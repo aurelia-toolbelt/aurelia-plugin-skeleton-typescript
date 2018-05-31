@@ -1,30 +1,8 @@
 const { FuseBox, QuantumPlugin, WebIndexPlugin, Sparky, HTMLPlugin, CSSPlugin } = require("fuse-box");
 const packageName = require('../package.json').name;
+const {runTypeChecker} = require('./typechecker')
 
 
-// get typechecker 
-const typechecker = require('fuse-box-typechecker').TypeHelper({
-    tsConfig: './tsconfig.json',
-    name: 'src',
-    basePath: './',
-    tsLint: './tslint.json',
-    yellowOnLint: true,
-    shortenFilenames: true
-})
-
-// create thread
-typechecker.createThread();
-
-
-let runTypeChecker = () => {
-    // same color..
-    console.log(`\x1b[36m%s\x1b[0m`, `app bundled- running type check`);
-
-    //call thread
-    typechecker.inspectCodeWithWorker(Object.assign(typechecker.options, { quit: false, type: 'watch' }));
-    typechecker.printResultWithWorker();
-
-}
 
 var injectBoostrapAndLoader = function () {
     var loader = function () { }
