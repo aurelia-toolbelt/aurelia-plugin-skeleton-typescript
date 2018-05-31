@@ -9,8 +9,7 @@ const typeAndLinter = require('fuse-box-typechecker').TypeHelper({
 
 
 
-// create thread
-// this is so we dont block dev server
+// create thread, this is so we dont block dev server
 typeAndLinter.createThread();
 
 

@@ -2,15 +2,8 @@ const { FuseBox, QuantumPlugin, WebIndexPlugin, Sparky, HTMLPlugin, CSSPlugin } 
 const packageName = require('../package.json').name;
 const {runTypeChecker} = require('./typechecker')
 const {bootstrapLoader} = require('./bootstrapLoader')
+let fuse, target = "browser@es6";
 
-
-
-
-// variables
-let fuse, bundle;
-let isProduction = false;
-let target = "browser@es6";
-let bundleName = "app";
 
 let instructions = `
     > sample/main.ts 
@@ -53,15 +46,12 @@ let webIndexTemplate =
 Sparky.task("config", () => {
     fuse = FuseBox.init({
         homeDir: "../src",
-        globals: { 'default': '*' }, // we need to expore index in our bundles
+        globals: { 'default': '*' }, 
         target: target,
         output: "../dev/$name.js",
         cache: false,
         log: false,
-        tsConfig: [{ // override tsConfig
-            target: bundleName,
-        }],
-        alias: { [packageName]: `~/${packageName}` }, // <- why cant I have `~/plugin` <-is that a bug ?
+        alias: { [packageName]: `~/${packageName}` }, // need to be the same..(alias cant be anything since its really on transpile fusebox does this)
         plugins: [
             bootstrapLoader(),
             CSSPlugin(),
@@ -70,7 +60,7 @@ Sparky.task("config", () => {
         ]
     })
 
-    fuse.bundle(bundleName)
+    fuse.bundle('app')
         .instructions(instructions)
         .sourceMaps(true)
         .watch()
