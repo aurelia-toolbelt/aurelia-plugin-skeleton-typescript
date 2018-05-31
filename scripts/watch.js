@@ -1,20 +1,10 @@
 const { FuseBox, QuantumPlugin, WebIndexPlugin, Sparky, HTMLPlugin, CSSPlugin } = require("fuse-box");
 const packageName = require('../package.json').name;
 const {runTypeChecker} = require('./typechecker')
+const {bootstrapLoader} = require('./bootstrapLoader')
 
 
 
-var injectBoostrapAndLoader = function () {
-    var loader = function () { }
-    loader.prototype.init = function (context) { }
-    loader.prototype.bundleEnd = function (context) {
-        context.source.addContent(`FuseBox.import("fuse-box-aurelia-loader")`);
-        context.source.addContent(`FuseBox.import("aurelia-bootstrapper")`);
-        context.source.addContent(`window.FUSEBOX_AURELIA_LOADER_RELOAD = true;`);
-        context.source.addContent(`window.FUSEBOX_AURELIA_LOADER_LOGGING = true;`);
-    }
-    return new loader();
-}
 
 // variables
 let fuse, bundle;
@@ -54,7 +44,6 @@ let webIndexTemplate =
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>   
-        
     </head>
     <body aurelia-app="sample/main"></body>
     <script type="text/javascript" charset="utf-8" src="./app.js"></script>
@@ -74,7 +63,7 @@ Sparky.task("config", () => {
         }],
         alias: { [packageName]: `~/${packageName}` }, // <- why cant I have `~/plugin` <-is that a bug ?
         plugins: [
-            injectBoostrapAndLoader(),
+            bootstrapLoader(),
             CSSPlugin(),
             HTMLPlugin(),
             WebIndexPlugin({ templateString: webIndexTemplate })
