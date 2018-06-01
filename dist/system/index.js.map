@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/aurelia-plugin-skeleton-typescript/index.ts"],"names":[],"mappings":";;IAKA,mBAA0B,MAA8B;QACtD,MAAM,CAAC,eAAe,CAAC,eAAe,CAAC,CAAC;IAC1C,CAAC;;;;;;;;;;;;;;;;;;;QACD,CAAC"}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/aurelia-plugin/index.ts"],"names":[],"mappings":";;IAKA,mBAA0B,MAA8B;QACtD,MAAM,CAAC,eAAe,CAAC,eAAe,CAAC,CAAC;IAC1C,CAAC;;;;;;;;;;;;;;;;;;;QACD,CAAC"}

@@ -1,13 +1,25 @@
-const { FuseBox, QuantumPlugin, WebIndexPlugin, Sparky, HTMLPlugin, CSSPlugin } = require("fuse-box");
+const {
+  FuseBox,
+  QuantumPlugin,
+  WebIndexPlugin,
+  Sparky,
+  HTMLPlugin,
+  CSSPlugin
+} = require("fuse-box");
 const packageName = require('../package.json').name;
-const {runTypeChecker} = require('./typechecker')
-const {bootstrapLoader} = require('./bootstrapLoader')
+const {
+  runTypeChecker
+} = require('./typechecker')
+const {
+  bootstrapLoader
+} = require('./bootstrapLoader')
 let fuse, target = "browser@es6";
 
+console.log( "\x1b[36m" , packageName );
 
 let instructions = `
-    > sample/main.ts 
-    + **/*.{ts,html,css} 
+    > sample/main.ts
+    + **/*.{ts,html,css}
     + fuse-box-css
     + aurelia-bootstrapper
     + aurelia-framework
@@ -18,16 +30,16 @@ let instructions = `
     + aurelia-fetch-client
     + aurelia-pal-browser
     + aurelia-animator-css
-    + aurelia-logging-console 
-    + aurelia-templating-binding 
-    + aurelia-templating-resources 
-    + aurelia-event-aggregator 
-    + aurelia-history-browser 
+    + aurelia-logging-console
+    + aurelia-templating-binding
+    + aurelia-templating-resources
+    + aurelia-event-aggregator
+    + aurelia-history-browser
     + aurelia-templating-router
     + fuse-box-aurelia-loader`;
 
 let webIndexTemplate =
-    `<!DOCTYPE html>
+  `<!DOCTYPE html>
     <html>
         <head>
         <meta charset="utf-8">
@@ -44,39 +56,44 @@ let webIndexTemplate =
 
 
 Sparky.task("config", () => {
-    fuse = FuseBox.init({
-        homeDir: "../src",
-        globals: { 'default': '*' }, 
-        target: target,
-        output: "../dev/$name.js",
-        cache: false,
-        log: false,
-        alias: { [packageName]: `~/${packageName}` }, // need to be the same..(alias cant be anything since its really on transpile fusebox does this)
-        plugins: [
-            bootstrapLoader(),
-            CSSPlugin(),
-            HTMLPlugin(),
-            WebIndexPlugin({ templateString: webIndexTemplate })
-        ]
-    })
+  fuse = FuseBox.init({
+    homeDir: "../src",
+    globals: {
+      'default': '*'
+    },
+    target: target,
+    output: "../dev/$name.js",
+    cache: false,
+    log: false,
+    alias: {
+      [packageName]: `~/${packageName}`
+    }, // need to be the same..(alias cant be anything since its really on transpile fusebox does this)
+    plugins: [
+      bootstrapLoader(),
+      CSSPlugin(),
+      HTMLPlugin(),
+      WebIndexPlugin({
+        templateString: webIndexTemplate
+      })
+    ]
+  })
 
-    fuse.bundle('app')
-        .instructions(instructions)
-        .sourceMaps(true)
-        .watch()
-        .completed(proc => {
-            runTypeChecker();
-        });
+  fuse.bundle('app')
+    .instructions(instructions)
+    .sourceMaps(true)
+    .watch()
+    .completed(proc => {
+      runTypeChecker();
+    });
 });
 
 
 Sparky.task("clean", () => {
-    return Sparky.src("../dev/").clean("../dev/");
+  return Sparky.src("../dev/").clean("../dev/");
 });
 
 
 Sparky.task("default", ["clean", "config"], () => {
-    fuse.dev();
-    fuse.run();
+  fuse.dev();
+  fuse.run();
 });
-

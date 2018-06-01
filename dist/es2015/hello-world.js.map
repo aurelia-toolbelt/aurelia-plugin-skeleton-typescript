@@ -1,1 +1,1 @@
-{"version":3,"file":"hello-world.js","sourceRoot":"","sources":["../../src/aurelia-plugin-skeleton-typescript/hello-world.ts"],"names":[],"mappings":"AAAA;IAAA;QAEU,QAAG,GAAG,gBAAgB,CAAC;IAEjC,CAAC;IAAD,iBAAC;AAAD,CAAC,AAJD,IAIC"}
+{"version":3,"file":"hello-world.js","sourceRoot":"","sources":["../../src/aurelia-plugin/hello-world.ts"],"names":[],"mappings":"AAAA;IAAA;QAEU,QAAG,GAAG,gBAAgB,CAAC;IAEjC,CAAC;IAAD,iBAAC;AAAD,CAAC,AAJD,IAIC"}
