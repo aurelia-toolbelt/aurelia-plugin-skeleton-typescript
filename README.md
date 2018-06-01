@@ -8,4 +8,7 @@ aurelia-plugin-skeleton-typescript
 * ```npm run build``` 
 
 
+### How to rename to your own plugin
+* ```npm run setup your_new_plugin_name```
+  * then run one of the above-mentioned scripts :smile:
 
