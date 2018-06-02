@@ -26,7 +26,8 @@
         "build": "node ./scripts/build.js",
         "setup": "node ./scripts/setup.js",
         "watch": "node ./scripts/watch.js",
-        "eslint": "node ./node_modules/eslint/bin/eslint scripts"
+        "eslint": "node ./node_modules/eslint/bin/eslint scripts",
+        "eslintFix": "node ./node_modules/eslint/bin/eslint scripts --fix"
     },
     "devDependencies": {
         "aurelia-animator-css": "^1.0.4",

@@ -5,7 +5,19 @@
         "ecmaFeatures": {}
     },
     "rules": {
-        "semi": 2
+        "semi": 2,
+        "eqeqeq": 2,
+        "line-comment-position": 2,
+        "capitalized-comments": 2,
+        "spaced-comment": 2,
+        "indent": [
+            2,
+            2
+        ],
+        "quotes": [
+            2,
+            "single"
+        ]
     },
     "env": {
         "browser": false,
