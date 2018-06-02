@@ -26,7 +26,6 @@ consoleLog('green', `Plugin name is : ${PLUGIN_NAME}`);
 consoleLog('green', `Plugin version is : ${PLUGIN_VERSION}`);
 consoleLog('white', 'Reading the package.json file, please wait...');
 
-
 readFile(PLUGIN_PACKAGE)
   .then((data) => {
 
@@ -41,10 +40,9 @@ readFile(PLUGIN_PACKAGE)
       resources[index] = resources[index].replace(OLD_NAME, PLUGIN_NAME);
     }
     packageJson.aurelia.build.resources = resources;
+
     packageJson = JSON.stringify(packageJson, null, 4);
     return packageJson;
-
-
 
   }).then((packageJson) => {
 
@@ -57,10 +55,9 @@ readFile(PLUGIN_PACKAGE)
     consoleLog('white', 'Reading the package.lock.json file, please wait...');
     return readFile(PLUGIN_PACKAGELOCK);
 
-
   }).then((data) => {
 
-    consoleLog('white', 'The package.json file is read, applying necessary changes...');
+    consoleLog('white', 'The package-lock.json file is read, applying necessary changes...');
 
     let packageJson = JSON.parse(data);
     packageJson.name = PLUGIN_NAME;
@@ -71,8 +68,11 @@ readFile(PLUGIN_PACKAGE)
     return writeFile(PLUGIN_PACKAGELOCK, packageJson);
 
   }).then(() => {
+
     consoleLog('white', 'The package-lock.json file updated');
+  
   }).then(() => {
+
     consoleLog('white', 'Updating main.ts file ...');
     return readFile('./src/sample/main.ts', 'UTF8');
 
