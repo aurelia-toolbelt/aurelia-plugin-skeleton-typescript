@@ -7,7 +7,9 @@ const PLUGIN_PACKAGE = './package.json';
 const PLUGIN_NAME = process.argv[2];
 const PLUGIN_VERSION = process.argv[3] || OLD_VERSION || '1.0.0-beta.1';
 const { consoleLog, consoleError } = require('./print');
-
+const { readFile } = require('./readFile');
+const { writeFile } = require('./writeFile');
+const { renameFolder } = require('./renameFolder');
 
 
 consoleLog('white', '*****************************************************************\n');
@@ -23,24 +25,31 @@ consoleLog('green', `Plugin version is : ${PLUGIN_VERSION}`);
 consoleLog('white', 'Reading the package.json file, please wait...');
 
 
-fs.readFile(PLUGIN_PACKAGE, 'UTF8', (err, data) => {
+readFile(PLUGIN_PACKAGE)
+  .then((data) => {
 
-  consoleLog('white', 'The package.json file is read, applying necessary changes...');
+    consoleLog('white', 'The package.json file is read, applying necessary changes...');
 
-  let packageJson = JSON.parse(data);
-  packageJson.name = PLUGIN_NAME;
-  packageJson.version = PLUGIN_VERSION;
+    let packageJson = JSON.parse(data);
+    packageJson.name = PLUGIN_NAME;
+    packageJson.version = PLUGIN_VERSION;
 
-  let resources = packageJson.aurelia.build.resources;
-  for (let index = 0; index < resources.length; index++) {
-    resources[index] = resources[index].replace(OLD_NAME, PLUGIN_NAME);
-  }
-  packageJson.aurelia.build.resources = resources;
-  packageJson = JSON.stringify(packageJson, null, 4);
+    let resources = packageJson.aurelia.build.resources;
+    for (let index = 0; index < resources.length; index++) {
+      resources[index] = resources[index].replace(OLD_NAME, PLUGIN_NAME);
+    }
+    packageJson.aurelia.build.resources = resources;
+    packageJson = JSON.stringify(packageJson, null, 4);
 
-  consoleLog('white', 'Updating package.json file ...');
 
-  fs.writeFile(PLUGIN_PACKAGE, packageJson, function (e) {
+
+
+  }).then(() => {
+
+    consoleLog('white', 'Updating package.json file ...');
+    return writeFile(PLUGIN_PACKAGE, packageJson);
+
+  }).then(() => {
 
     consoleLog('white', 'The package.json file updated');
     consoleLog('white', 'Updating main.ts file ...');
@@ -50,18 +59,23 @@ fs.readFile(PLUGIN_PACKAGE, 'UTF8', (err, data) => {
     fs.writeFileSync('./src/sample/main.ts', aurelia_main, 'UTF8');
     consoleLog('white', 'The main.ts file updated.');
 
+
+
+  }).then(() => {
+
     consoleLog('blue', 'Renaming the folders...');
-    fs.rename(`./src/${OLD_NAME}`, `./src/${PLUGIN_NAME}`, function (err) {
-      if (err) {
-        consoleError('Failed to rename folder from:', `./src/${OLD_NAME}`, ' ---> ', `./src/${PLUGIN_NAME}`);
-        throw err;
-      }
-      consoleLog('blue', 'Rename completed');
-      consoleLog('blue', 'Scaffold completed');
-      consoleLog('purple', 'Ready to go, run build or watch scripts ');
-      consoleLog('white', '\n*****************************************************************\n');
-    });
+    return renameFolder(`./src/${OLD_NAME}`, `./src/${PLUGIN_NAME}`);
 
+  }).then(() => {
 
+    consoleLog('blue', 'Rename completed');
+    consoleLog('blue', 'Scaffold completed');
+    consoleLog('purple', 'Ready to go, run build or watch scripts ');
+    consoleLog('white', '\n*****************************************************************\n');
+
+  }).catch((err) => {
+    consoleError(err);
   });
-});
+
+
+
