@@ -14,7 +14,7 @@ consoleLog("white", '***********************************************************
 consoleLog("blue", 'Start scaffolding package...');
 
 if (!PLUGIN_NAME) {
-  consoleError("red", 'Package name is absent, please provide one');
+  consoleError('Package name is absent, please provide one');
   throw new Error('You must provide a name for your plugin');
 }
 
