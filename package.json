@@ -45,7 +45,7 @@
         "eslint": "^5.0.0-alpha.4",
         "fuse-box": "^3.3.0-next.9",
         "fuse-box-aurelia-loader": "^2.0.2",
-        "fuse-box-typechecker": "^2.8.0",
+        "fuse-box-typechecker": "^2.9.0",
         "less": "^3.0.4",
         "source-map": "^0.7.3",
         "stylus": "^0.54.5",

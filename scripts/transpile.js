@@ -14,14 +14,20 @@ module.exports.transpileTo = function (outDir, moduleType) {
     shortenFilenames: true,
     yellowOnLint: true,
     emit: true,
-    clearOnEmit: true
+    clearOnEmit: true,
+    tsConfigOverride: {
+      compilerOptions: {
+        rootDir: `src/${packageName}`,
+        outDir: outDir,
+        module: moduleType
+      },
+      paths : {},
+      exclude : ['node_modules', 'dist', 'src/sample', 'dev', 'distTS']
+    }
   });
 
-  transpile.options.tsConfigJsonContent.compilerOptions.rootDir = `src/${packageName}`;
-  transpile.options.tsConfigJsonContent.compilerOptions.outDir = outDir;
-  transpile.options.tsConfigJsonContent.compilerOptions.module = moduleType;
-  transpile.options.tsConfigJsonContent.paths = {};
-  transpile.options.tsConfigJsonContent.exclude = ['node_modules', 'dist', 'src/sample', 'dev', 'distTS'];
+
+
   return transpile.runSync();
 };
 
