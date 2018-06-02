@@ -1,6 +1,9 @@
+/**
+ * Helper to setup the plugin for new users
+ * 
+ */
 const OLD_NAME = require('../package.json').name;
 const OLD_VERSION = require('../package.json').version;
-
 const PLUGIN_PACKAGE = './package.json';
 const PLUGIN_NAME = process.argv[2];
 const PLUGIN_VERSION = process.argv[3] || OLD_VERSION || '1.0.0-beta.1';

@@ -1,4 +1,7 @@
-// Print helper
+/**
+ * Console.log helper
+ * 
+ */
 const print = function (color, comment, error) {
   switch (color) {
   case 'green':

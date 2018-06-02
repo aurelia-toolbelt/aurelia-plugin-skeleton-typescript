@@ -1,3 +1,8 @@
+/**
+ * Build scripts, makes the es2015,commonjs/amd etc in dist folder
+ * also copies html and css files over and updates the distTS folder
+ * 
+ */
 const { task, src } = require('fuse-box/sparky');
 const { transpileTo } = require('./transpile');
 const packageName = require('../package.json').name;

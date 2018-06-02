@@ -1,3 +1,7 @@
+/**
+ * This takes care of the watch script, uses fusebox as loader/bundler
+ * 
+ */
 const {
   FuseBox,
   QuantumPlugin,
