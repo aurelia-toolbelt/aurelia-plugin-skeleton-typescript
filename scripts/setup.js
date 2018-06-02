@@ -5,6 +5,7 @@
 const OLD_NAME = require('../package.json').name;
 const OLD_VERSION = require('../package.json').version;
 const PLUGIN_PACKAGE = './package.json';
+const PLUGIN_PACKAGELOCK = './package-lock.json';
 const PLUGIN_NAME = process.argv[2];
 const PLUGIN_VERSION = process.argv[3] || OLD_VERSION || '1.0.0-beta.1';
 const { consoleLog, consoleError } = require('./print');
@@ -53,6 +54,25 @@ readFile(PLUGIN_PACKAGE)
   }).then(() => {
 
     consoleLog('white', 'The package.json file updated');
+    consoleLog('white', 'Reading the package.lock.json file, please wait...');
+    return readFile(PLUGIN_PACKAGELOCK);
+
+
+  }).then((data) => {
+
+    consoleLog('white', 'The package.json file is read, applying necessary changes...');
+
+    let packageJson = JSON.parse(data);
+    packageJson.name = PLUGIN_NAME;
+    packageJson.version = PLUGIN_VERSION;
+    packageJson = JSON.stringify(packageJson, null, 4);
+
+    consoleLog('white', 'Updating package.json file ...');
+    return writeFile(PLUGIN_PACKAGELOCK, packageJson);
+
+  }).then(() => {
+    consoleLog('white', 'The package-lock.json file updated');
+  }).then(() => {
     consoleLog('white', 'Updating main.ts file ...');
     return readFile('./src/sample/main.ts', 'UTF8');
 
