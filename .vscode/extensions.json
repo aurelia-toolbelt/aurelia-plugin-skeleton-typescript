@@ -10,6 +10,7 @@
     "msjsdiag.debugger-for-edge",
     "aaron-bond.better-comments",
     "Gruntfuggly.todo-tree",
-    "oderwat.indent-rainbow"
+    "oderwat.indent-rainbow",
+    "dbaeumer.vscode-eslint"
   ]
 }
