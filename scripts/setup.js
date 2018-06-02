@@ -53,7 +53,7 @@ fs.readFile(PLUGIN_PACKAGE, 'UTF8', (err, data) => {
     consoleLog("blue", 'Renaming the folders...');
     fs.rename(`./src/${OLD_NAME}`, `./src/${PLUGIN_NAME}`, function (err) {
       if (err) {
-        consoleError("red", 'failed to rename folder from:', `./src/${OLD_NAME}`, ' ---> ', `./src/${PLUGIN_NAME}`);
+        consoleError('Failed to rename folder from:', `./src/${OLD_NAME}`, ' ---> ', `./src/${PLUGIN_NAME}`);
         throw err;
       }
       consoleLog("blue", 'Rename completed');
