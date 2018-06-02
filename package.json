@@ -1,5 +1,5 @@
 {
-    "name": "awsome",
+    "name": "aurelia-plugin-skeleton-typescript",
     "version": "1.0.0-beta.1",
     "description": "aurelia-plugin-skeleton-typescript",
     "keywords": [
@@ -68,10 +68,10 @@
         "usedBy": [],
         "build": {
             "resources": [
-                "awsome",
-                "awsome/index",
-                "awsome/hello-world.css",
-                "awsome/hello-world.html"
+                "aurelia-plugin-skeleton-typescript",
+                "aurelia-plugin-skeleton-typescript/index",
+                "aurelia-plugin-skeleton-typescript/hello-world.css",
+                "aurelia-plugin-skeleton-typescript/hello-world.html"
             ]
         }
     }

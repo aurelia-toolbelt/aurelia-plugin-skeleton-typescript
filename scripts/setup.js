@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const OLD_NAME = require('../package.json').name;
 const OLD_VERSION = require('../package.json').version;
 
@@ -40,11 +38,11 @@ readFile(PLUGIN_PACKAGE)
     }
     packageJson.aurelia.build.resources = resources;
     packageJson = JSON.stringify(packageJson, null, 4);
+    return packageJson;
 
 
 
-
-  }).then(() => {
+  }).then((packageJson) => {
 
     consoleLog('white', 'Updating package.json file ...');
     return writeFile(PLUGIN_PACKAGE, packageJson);
@@ -53,16 +51,16 @@ readFile(PLUGIN_PACKAGE)
 
     consoleLog('white', 'The package.json file updated');
     consoleLog('white', 'Updating main.ts file ...');
+    return readFile('./src/sample/main.ts', 'UTF8');
 
-    let aurelia_main = fs.readFileSync('./src/sample/main.ts', 'UTF8');
+  }).then((aurelia_main) => {
+
     aurelia_main = aurelia_main.replace(OLD_NAME, PLUGIN_NAME);
-    fs.writeFileSync('./src/sample/main.ts', aurelia_main, 'UTF8');
-    consoleLog('white', 'The main.ts file updated.');
-
-
+    return writeFile('./src/sample/main.ts', aurelia_main);
 
   }).then(() => {
 
+    consoleLog('white', 'The main.ts file updated.');
     consoleLog('blue', 'Renaming the folders...');
     return renameFolder(`./src/${OLD_NAME}`, `./src/${PLUGIN_NAME}`);
 

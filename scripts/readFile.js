@@ -1,3 +1,4 @@
+const fs = require('fs');
 /**
  * Reads file and returns promise
  * 

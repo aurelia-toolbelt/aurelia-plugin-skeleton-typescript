@@ -1,3 +1,4 @@
+const fs = require('fs');
 /**
  * Wites to file and returns promise
  * 
