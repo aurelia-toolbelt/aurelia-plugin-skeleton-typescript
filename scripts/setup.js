@@ -29,6 +29,7 @@ consoleLog('white', 'Reading the package.json file, please wait...');
 readFile(PLUGIN_PACKAGE)
   .then((data) => {
 
+
     consoleLog('white', 'The package.json file is read, applying necessary changes...');
 
     let packageJson = JSON.parse(data);
@@ -46,16 +47,19 @@ readFile(PLUGIN_PACKAGE)
 
   }).then((packageJson) => {
 
+
     consoleLog('white', 'Updating package.json file ...');
     return writeFile(PLUGIN_PACKAGE, packageJson);
 
   }).then(() => {
+
 
     consoleLog('white', 'The package.json file updated');
     consoleLog('white', 'Reading the package.lock.json file, please wait...');
     return readFile(PLUGIN_PACKAGELOCK);
 
   }).then((data) => {
+
 
     consoleLog('white', 'The package-lock.json file is read, applying necessary changes...');
 
@@ -69,19 +73,23 @@ readFile(PLUGIN_PACKAGE)
 
   }).then(() => {
 
+
     consoleLog('white', 'The package-lock.json file updated');
   
   }).then(() => {
+
 
     consoleLog('white', 'Updating main.ts file ...');
     return readFile('./src/sample/main.ts', 'UTF8');
 
   }).then((aurelia_main) => {
 
+
     aurelia_main = aurelia_main.replace(OLD_NAME, PLUGIN_NAME);
     return writeFile('./src/sample/main.ts', aurelia_main);
 
   }).then(() => {
+
 
     consoleLog('white', 'The main.ts file updated.');
     consoleLog('blue', 'Renaming the folders...');
@@ -89,13 +97,17 @@ readFile(PLUGIN_PACKAGE)
 
   }).then(() => {
 
+
     consoleLog('blue', 'Rename completed');
     consoleLog('blue', 'Scaffold completed');
     consoleLog('purple', 'Ready to go, run build or watch scripts ');
     consoleLog('white', '\n*****************************************************************\n');
 
   }).catch((err) => {
+
+
     consoleError(err);
+
   });
 
 
