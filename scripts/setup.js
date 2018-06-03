@@ -16,21 +16,44 @@ const { renameFolder } = require('./renameFolder');
 
 
 const setup = async function () {
-
-  consoleLog('white', '*****************************************************************\n');
-  consoleLog('blue', 'Start scaffolding package...');
-
-  if (!NEW_PLUGIN_NAME) {
-    consoleError('Package name is absent, please provide one');
-    throw new Error('You must provide a name for your plugin');
-  }
-
   try {
+
+
+  
+    /**
+     * Inform user we are staring
+     * 
+     */
+    consoleLog('white', '*****************************************************************\n');
+    consoleLog('blue', 'Start scaffolding package...');
+
+
+
+
+  
+    /**
+     * Check if user have supplied minimum data (new name)
+     * Then show them new name/versiopn
+     * 
+     */
+    if (!NEW_PLUGIN_NAME) {
+      consoleError('Package name is absent, please provide one');
+      throw new Error('You must provide a name for your plugin');
+    }
 
     consoleLog('green', `Plugin name is : ${NEW_PLUGIN_NAME}`);
     consoleLog('green', `Plugin version is : ${NEW_PLUGIN_VERSION}`);
-    consoleLog('white', 'Reading the package.json file, please wait...');
 
+
+
+  
+
+    /**
+     * Parse package.json and update name, version and aurelia resources section with new name
+     * when we are done we update the file (save data)
+     * 
+     */
+    consoleLog('white', 'Reading the package.json file, please wait...');
     let packageJsonRaw = await readFile(PLUGIN_PACKAGE_PATH);
     consoleLog('white', 'The package.json file is read, applying necessary changes...');
 
@@ -45,11 +68,19 @@ const setup = async function () {
     packageJsonObj.aurelia.build.resources = resources;
     packageJsonObj = JSON.stringify(packageJsonObj, null, 4);
 
-
     consoleLog('white', 'Updating package.json file ...');
     await writeFile(PLUGIN_PACKAGE_PATH, packageJsonObj);
     consoleLog('white', 'The package.json file updated');
 
+
+
+  
+
+    /**
+     * Parse package-lock.json and update name, version
+     * when we are done we update the file (save data)
+     * 
+     */
     consoleLog('white', 'Reading the package.lock.json file, please wait...');
     let packageLockJsonRaw = await readFile(PLUGIN_PACKAGELOCK_PATH);
     consoleLog('white', 'The package-lock.json file is read, applying necessary changes...');
@@ -63,12 +94,29 @@ const setup = async function () {
     await writeFile(PLUGIN_PACKAGELOCK_PATH, packageLockJsonObj);
     consoleLog('white', 'The package-lock.json file updated');
 
+
+
+  
+  
+    /**
+     * Read main.ts file under sample folder and update plugin name
+     * when we are done we update the file (save data)
+     * 
+     */
     consoleLog('white', 'Updating main.ts file ...');
     let aurelia_main = await readFile('./src/sample/main.ts', 'UTF8');
     aurelia_main = aurelia_main.replace(`.plugin(${OLD_PLUGIN_NAME})`, `.plugin(${NEW_PLUGIN_NAME})`);
     await writeFile('./src/sample/main.ts', aurelia_main);
     consoleLog('white', 'The main.ts file updated.');
 
+
+
+
+    /**
+     * Rename folder under src
+     * when we are done, we tell user everything is ready
+     * 
+     */
     consoleLog('blue', 'Renaming the folders...');
     await renameFolder(`./src/${OLD_PLUGIN_NAME}`, `./src/${NEW_PLUGIN_NAME}`);
     consoleLog('blue', 'Rename completed');
