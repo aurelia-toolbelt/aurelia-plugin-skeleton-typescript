@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * Build scripts, makes the es2015,commonjs/amd etc in dist folder
  * also copies html and css files over and updates the distTS folder

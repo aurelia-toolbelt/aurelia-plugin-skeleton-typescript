@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * This takes care of the watch script, uses fusebox as loader/bundler
  * 
@@ -10,6 +11,7 @@ const {
   HTMLPlugin,
   CSSPlugin
 } = require('fuse-box');
+// @ts-ignore
 const packageName = require('../package.json').name;
 const {
   runTypeChecker

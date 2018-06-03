@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * Console.log helper
  * 

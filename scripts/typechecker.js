@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * Helper to typecheck and tslint our code
  * 
@@ -8,7 +9,9 @@ const typeAndLinter = require('fuse-box-typechecker').TypeHelper({
   basePath: './',
   tsLint: './tslint.json',
   yellowOnLint: true,
-  shortenFilenames: true
+  shortenFilenames: true,
+  // Is optional next typechecker release
+  tsConfigOverride: {}
 });
 
 // Create thread, this is so we dont block dev server

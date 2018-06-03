@@ -1,8 +1,11 @@
+// @ts-check
 /**
  * Helper to setup the plugin for new users
- * 
+ *
  */
+// @ts-ignore
 const OLD_PLUGIN_NAME = require('../package.json').name;
+// @ts-ignore
 const OLD_PLUGIN_VERSION = require('../package.json').version;
 const PLUGIN_PACKAGE_PATH = './package.json';
 const PLUGIN_PACKAGELOCK_PATH = './package-lock.json';
@@ -104,7 +107,7 @@ const setup = async function () {
      * 
      */
     consoleLog('white', 'Updating main.ts file ...');
-    let aurelia_main = await readFile('./src/sample/main.ts', 'UTF8');
+    let aurelia_main = await readFile('./src/sample/main.ts');
     aurelia_main = aurelia_main.replace(`.plugin(${OLD_PLUGIN_NAME})`, `.plugin(${NEW_PLUGIN_NAME})`);
     await writeFile('./src/sample/main.ts', aurelia_main);
     consoleLog('white', 'The main.ts file updated.');

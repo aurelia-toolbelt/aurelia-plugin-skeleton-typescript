@@ -1,8 +1,10 @@
+// @ts-check
 /**
  * Helper to transpile the code using the fusebox-typechecker
  * 
  */
 const transpiler = require('fuse-box-typechecker').TypeHelper;
+// @ts-ignore
 const packageName = require('../package.json').name;
 
 module.exports.transpileTo = function (outDir, moduleType) {
