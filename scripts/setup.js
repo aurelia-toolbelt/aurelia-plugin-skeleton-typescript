@@ -24,14 +24,13 @@ const setup = async function () {
     throw new Error('You must provide a name for your plugin');
   }
 
-  consoleLog('green', `Plugin name is : ${PLUGIN_NAME}`);
-  consoleLog('green', `Plugin version is : ${PLUGIN_VERSION}`);
-  consoleLog('white', 'Reading the package.json file, please wait...');
-
-  let data = await readFile(PLUGIN_PACKAGE);
-
   try {
 
+    consoleLog('green', `Plugin name is : ${PLUGIN_NAME}`);
+    consoleLog('green', `Plugin version is : ${PLUGIN_VERSION}`);
+    consoleLog('white', 'Reading the package.json file, please wait...');
+
+    let data = await readFile(PLUGIN_PACKAGE);
     consoleLog('white', 'The package.json file is read, applying necessary changes...');
 
     let packageJson = JSON.parse(data);
@@ -49,7 +48,7 @@ const setup = async function () {
     consoleLog('white', 'Updating package.json file ...');
     await writeFile(PLUGIN_PACKAGE, packageJson);
     consoleLog('white', 'The package.json file updated');
-    
+
     consoleLog('white', 'Reading the package.lock.json file, please wait...');
     data = await readFile(PLUGIN_PACKAGELOCK);
     consoleLog('white', 'The package-lock.json file is read, applying necessary changes...');
@@ -68,11 +67,11 @@ const setup = async function () {
     aurelia_main = aurelia_main.replace(OLD_NAME, PLUGIN_NAME);
     await writeFile('./src/sample/main.ts', aurelia_main);
     consoleLog('white', 'The main.ts file updated.');
-    
+
     consoleLog('blue', 'Renaming the folders...');
     await renameFolder(`./src/${OLD_NAME}`, `./src/${PLUGIN_NAME}`);
     consoleLog('blue', 'Rename completed');
-    
+
     consoleLog('blue', 'Scaffold completed');
     consoleLog('purple', 'Ready to go, run build or watch scripts ');
     consoleLog('white', '\n*****************************************************************\n');
