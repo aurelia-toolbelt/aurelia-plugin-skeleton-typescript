@@ -14,21 +14,23 @@ const { writeFile } = require('./writeFile');
 const { renameFolder } = require('./renameFolder');
 
 
-consoleLog('white', '*****************************************************************\n');
-consoleLog('blue', 'Start scaffolding package...');
+const setup = async function () {
 
-if (!PLUGIN_NAME) {
-  consoleError('Package name is absent, please provide one');
-  throw new Error('You must provide a name for your plugin');
-}
+  consoleLog('white', '*****************************************************************\n');
+  consoleLog('blue', 'Start scaffolding package...');
 
-consoleLog('green', `Plugin name is : ${PLUGIN_NAME}`);
-consoleLog('green', `Plugin version is : ${PLUGIN_VERSION}`);
-consoleLog('white', 'Reading the package.json file, please wait...');
+  if (!PLUGIN_NAME) {
+    consoleError('Package name is absent, please provide one');
+    throw new Error('You must provide a name for your plugin');
+  }
 
-readFile(PLUGIN_PACKAGE)
-  .then((data) => {
+  consoleLog('green', `Plugin name is : ${PLUGIN_NAME}`);
+  consoleLog('green', `Plugin version is : ${PLUGIN_VERSION}`);
+  consoleLog('white', 'Reading the package.json file, please wait...');
 
+  let data = await readFile(PLUGIN_PACKAGE);
+
+  try {
 
     consoleLog('white', 'The package.json file is read, applying necessary changes...');
 
@@ -41,74 +43,47 @@ readFile(PLUGIN_PACKAGE)
       resources[index] = resources[index].replace(OLD_NAME, PLUGIN_NAME);
     }
     packageJson.aurelia.build.resources = resources;
-
     packageJson = JSON.stringify(packageJson, null, 4);
-    return packageJson;
-
-  }).then((packageJson) => {
 
 
     consoleLog('white', 'Updating package.json file ...');
-    return writeFile(PLUGIN_PACKAGE, packageJson);
-
-  }).then(() => {
-
-
+    await writeFile(PLUGIN_PACKAGE, packageJson);
     consoleLog('white', 'The package.json file updated');
+    
     consoleLog('white', 'Reading the package.lock.json file, please wait...');
-    return readFile(PLUGIN_PACKAGELOCK);
-
-  }).then((data) => {
-
-
+    data = await readFile(PLUGIN_PACKAGELOCK);
     consoleLog('white', 'The package-lock.json file is read, applying necessary changes...');
 
-    let packageJson = JSON.parse(data);
+    packageJson = JSON.parse(data);
     packageJson.name = PLUGIN_NAME;
     packageJson.version = PLUGIN_VERSION;
     packageJson = JSON.stringify(packageJson, null, 4);
 
     consoleLog('white', 'Updating package.json file ...');
-    return writeFile(PLUGIN_PACKAGELOCK, packageJson);
-
-  }).then(() => {
-
-
+    await writeFile(PLUGIN_PACKAGELOCK, packageJson);
     consoleLog('white', 'The package-lock.json file updated');
-  
-  }).then(() => {
-
 
     consoleLog('white', 'Updating main.ts file ...');
-    return readFile('./src/sample/main.ts', 'UTF8');
-
-  }).then((aurelia_main) => {
-
-
+    let aurelia_main = await readFile('./src/sample/main.ts', 'UTF8');
     aurelia_main = aurelia_main.replace(OLD_NAME, PLUGIN_NAME);
-    return writeFile('./src/sample/main.ts', aurelia_main);
-
-  }).then(() => {
-
-
+    await writeFile('./src/sample/main.ts', aurelia_main);
     consoleLog('white', 'The main.ts file updated.');
+    
     consoleLog('blue', 'Renaming the folders...');
-    return renameFolder(`./src/${OLD_NAME}`, `./src/${PLUGIN_NAME}`);
-
-  }).then(() => {
-
-
+    await renameFolder(`./src/${OLD_NAME}`, `./src/${PLUGIN_NAME}`);
     consoleLog('blue', 'Rename completed');
+    
     consoleLog('blue', 'Scaffold completed');
     consoleLog('purple', 'Ready to go, run build or watch scripts ');
     consoleLog('white', '\n*****************************************************************\n');
 
-  }).catch((err) => {
-
+  } catch (err) {
 
     consoleError(err);
 
-  });
+  }
 
 
+};
 
+setup();
