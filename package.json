@@ -47,6 +47,7 @@
         "fuse-box-aurelia-loader": "^2.0.2",
         "fuse-box-typechecker": "^2.9.0",
         "less": "^3.0.4",
+        "readline-sync": "^1.4.9",
         "source-map": "^0.7.3",
         "stylus": "^0.54.5",
         "tslint": "^5.10.0",

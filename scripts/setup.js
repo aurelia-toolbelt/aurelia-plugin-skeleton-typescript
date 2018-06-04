@@ -9,8 +9,14 @@ const OLD_PLUGIN_NAME = require('../package.json').name;
 const OLD_PLUGIN_VERSION = require('../package.json').version;
 const PLUGIN_PACKAGE_PATH = './package.json';
 const PLUGIN_PACKAGELOCK_PATH = './package-lock.json';
-const NEW_PLUGIN_NAME = process.argv[2];
-const NEW_PLUGIN_VERSION = process.argv[3] || OLD_PLUGIN_VERSION || '1.0.0-beta.1';
+// Defaults
+const NEW_PLUGIN_DEFAULT_NAME = 'mytestplugin';
+const NEW_PLUGIN_DEFAULT_VERSION = '1.0.0-beta.1';
+// Console params
+var NEW_PLUGIN_NAME = process.argv[2];
+var NEW_PLUGIN_VERSION = process.argv[3] || OLD_PLUGIN_VERSION || NEW_PLUGIN_DEFAULT_VERSION;
+// Interactive console
+const readlineSync = require('readline-sync');
 
 const {
   consoleLog,
@@ -40,8 +46,10 @@ const setup = async function () {
      * 
      */
     if (!NEW_PLUGIN_NAME) {
-      consoleError('Package name is absent, please provide one');
-      throw new Error('You must provide a name for your plugin');
+      var packageName = readlineSync.question(' What is your package name? [' + NEW_PLUGIN_DEFAULT_NAME + '] ');  
+      NEW_PLUGIN_NAME = packageName || NEW_PLUGIN_DEFAULT_NAME;
+      var pluginVersion = readlineSync.question(' What is your package version? [' + NEW_PLUGIN_DEFAULT_VERSION + '] ');  
+      NEW_PLUGIN_VERSION = pluginVersion || NEW_PLUGIN_DEFAULT_VERSION;
     }
 
     consoleLog('green', `Plugin name is : ${NEW_PLUGIN_NAME}`);
