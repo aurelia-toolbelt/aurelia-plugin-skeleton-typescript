@@ -10,7 +10,7 @@ const OLD_PLUGIN_VERSION = require('../package.json').version;
 const PLUGIN_PACKAGE_PATH = './package.json';
 const PLUGIN_PACKAGELOCK_PATH = './package-lock.json';
 // Defaults
-const NEW_PLUGIN_DEFAULT_NAME = 'mytestplugin';
+const NEW_PLUGIN_DEFAULT_NAME = 'aurelia-plugin';
 const NEW_PLUGIN_DEFAULT_VERSION = '1.0.0-beta.1';
 // Console params
 var NEW_PLUGIN_NAME = process.argv[2];
