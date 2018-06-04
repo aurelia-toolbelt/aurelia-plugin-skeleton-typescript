@@ -12,17 +12,17 @@ const PLUGIN_PACKAGELOCK_PATH = './package-lock.json';
 const NEW_PLUGIN_NAME = process.argv[2];
 const NEW_PLUGIN_VERSION = process.argv[3] || OLD_PLUGIN_VERSION || '1.0.0-beta.1';
 
-const { consoleLog, consoleError } = require('./print');
-const { readFile } = require('./readFile');
-const { writeFile } = require('./writeFile');
-const { renameFolder } = require('./renameFolder');
+const {
+  consoleLog,
+  consoleError,
+  readFile,
+  writeFile,
+  renameFolder
+} = require('./common');
 
 
 const setup = async function () {
   try {
-
-
-  
     /**
      * Inform user we are staring
      * 
@@ -33,7 +33,7 @@ const setup = async function () {
 
 
 
-  
+
     /**
      * Check if user have supplied minimum data (new name)
      * Then show them new name/versiopn
@@ -49,7 +49,7 @@ const setup = async function () {
 
 
 
-  
+
 
     /**
      * Parse package.json and update name, version and aurelia resources section with new name
@@ -77,7 +77,7 @@ const setup = async function () {
 
 
 
-  
+
 
     /**
      * Parse package-lock.json and update name, version
@@ -99,8 +99,8 @@ const setup = async function () {
 
 
 
-  
-  
+
+
     /**
      * Read main.ts file under sample folder and update plugin name
      * when we are done we update the file (save data)
