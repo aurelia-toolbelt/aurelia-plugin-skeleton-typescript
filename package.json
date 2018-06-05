@@ -27,9 +27,14 @@
         "setup": "node ./scripts/setup.js",
         "watch": "node ./scripts/watch.js",
         "eslint": "node ./node_modules/eslint/bin/eslint scripts",
-        "eslintFix": "node ./node_modules/eslint/bin/eslint scripts --fix"
+        "eslintFix": "node ./node_modules/eslint/bin/eslint scripts --fix",
+        "test": "./node_modules/.bin/jest --config=jest.config.json",
+        "test-coverage": "./node_modules/.bin/jest --coverage --config=jest.config.json",
+        "test-watch": "./node_modules/.bin/jest --config=jest.config.json --watch"
     },
     "devDependencies": {
+        "@types/jest": "^23.0.0",
+        "@types/lodash": "^4.14.109",
         "aurelia-animator-css": "^1.0.4",
         "aurelia-binding": "^2.0.0",
         "aurelia-bootstrapper": "^2.2.0",
@@ -37,19 +42,26 @@
         "aurelia-fetch-client": "^1.3.1",
         "aurelia-framework": "^1.2.0",
         "aurelia-loader": "^1.0.0",
+        "aurelia-loader-nodejs": "^1.0.1",
         "aurelia-metadata": "^1.0.3",
         "aurelia-pal": "^1.8.0",
+        "aurelia-pal-nodejs": "^1.1.0",
         "aurelia-path": "^1.1.1",
+        "aurelia-polyfills": "^1.3.0",
         "aurelia-task-queue": "^1.3.0",
         "aurelia-templating": "^1.7.0",
         "eslint": "^5.0.0-alpha.4",
         "fuse-box": "^3.3.0-next.9",
         "fuse-box-aurelia-loader": "^2.0.2",
         "fuse-box-typechecker": "^2.9.0",
+        "jest": "^23.1.0",
+        "jsdom": "^11.11.0",
         "less": "^3.0.4",
+        "lodash": "^4.17.10",
         "readline-sync": "^1.4.9",
         "source-map": "^0.7.3",
         "stylus": "^0.54.5",
+        "ts-jest": "^22.4.6",
         "tslint": "^5.10.0",
         "typescript": "2.9.1"
     },
@@ -63,7 +75,7 @@
         "devDependencies": {}
     },
     "dependencies": {
-        "@types/node": "^10.3.0"
+        "@types/node": "^10.3.1"
     },
     "aurelia": {
         "usedBy": [],

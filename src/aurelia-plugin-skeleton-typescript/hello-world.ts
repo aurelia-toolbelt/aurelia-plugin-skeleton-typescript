@@ -1,5 +1,5 @@
 export class HelloWorld {
 
-  private msg = 'Hello Aurelia!';
+  public msg = 'Hello Aurelia!';
 
 }

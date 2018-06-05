@@ -20,22 +20,17 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "baseUrl": "./",
-    "paths": {
-    }
+    "paths": {}
   },
   "filesGlob": [
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "./typings/index.d.ts",
+    "./custom_typings/**/*.d.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "distTS"
-  ],
+  "exclude": ["node_modules", "dist", "distTS", "test"],
   "atom": {
     "rewriteTsconfig": false
   }
