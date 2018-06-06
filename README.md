@@ -1,5 +1,5 @@
 
-![Imgur](https://i.imgur.com/UuS2DJe.png)
+![Imgur](https://i.imgur.com/TSdQiSt.png)
 
 # Aurelia plugin skeleton with Typescript
 
