@@ -3,6 +3,8 @@
 
 # Aurelia plugin skeleton with Typescript
 
+[![Join the chat at https://gitter.im/aurelia-plugin-skeleton-typescript/Lobby](https://badges.gitter.im/aurelia-plugin-skeleton-typescript/Lobby.svg)](https://gitter.im/aurelia-plugin-skeleton-typescript/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Need to make a Aurelia Typescript plugin ?
 If the answer is "YES!!!", then you have just found the perfect place to start :-)
 
