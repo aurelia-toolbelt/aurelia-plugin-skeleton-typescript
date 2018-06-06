@@ -3,7 +3,7 @@
 
 # Aurelia plugin skeleton with Typescript
 
-Certainly happened to you that you want to write an Aurelia plug-in. If yes this is for you :)
+Maybe happened to you that you want to write an Aurelia plug-in. If yes this is for you :)
 
 This plugin system created based on:
 1. [Typescript](https://www.typescriptlang.org/) as a typed superset of JavaScript that compiles to plain JavaScript.
@@ -18,7 +18,7 @@ This plugin system created based on:
 
 ### How to rename to your own plugin
 * ```npm run setup```
-  * anwser the questions about name and version
+  * should anwser the questions about name and version
   * then run one of the above-mentioned scripts :smile:
   
 ### How to test our functionalities
