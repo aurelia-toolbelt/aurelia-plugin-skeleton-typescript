@@ -7,11 +7,10 @@ Certainly happened to you that you want to write an Aurelia plug-in. If yes this
 
 This plugin system created based on:
 1. [Typescript](https://www.typescriptlang.org/) as a typed superset of JavaScript that compiles to plain JavaScript.
-2. [FuseBox](https://github.com/fuse-box/fuse-box) as a bundler/module loader.
+2. [FuseBox](https://github.com/fuse-box/fuse-box) as a bundler/module loader for the **sample**
 3. [Jest](https://facebook.github.io/jest/) as delightful JavaScript testing.
 4. [Puppeteer](Puppeteer) as headless Chrome for E2E testing.
-5. [ESLint](https://eslint.org/) as a pluggable linting utility for JavaScript.
-6. [TSLint](https://palantir.github.io/tslint/) as an extensible linter for the TypeScript language.
+5. [FuseBox Typechecker](https://github.com/fuse-box/fuse-box-typechecker) as a simple helper to do typechecking.
 
 ### How to build and run sample
 * ```npm run watch```
@@ -22,12 +21,6 @@ This plugin system created based on:
   * anwser the questions about name and version
   * then run one of the above-mentioned scripts :smile:
   
-### How to use eslint for finding problems
-* ``` npm run eslint ```
-
-### How to fix eslint error in a moment
-* ``` npm run eslintFix ```
-
 ### How to test our functionalities
 
 * ```npm run unitTest```
