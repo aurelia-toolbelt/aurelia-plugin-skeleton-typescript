@@ -1,4 +1,7 @@
-# aurelia-plugin-skeleton-typescript
+
+![Imgur](https://i.imgur.com/UuS2DJe.png)
+
+# Aurelia plugin skeleton with Typescript
 
 Certainly happened to you that you want to write an Aurelia plug-in. If yes this for you :)
 
