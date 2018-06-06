@@ -3,25 +3,31 @@
 
 # Aurelia plugin skeleton with Typescript
 
-Maybe happened to you that you want to write an Aurelia plug-in. If yes this is for you :)
+Need to make a Aurelia Typescript plugin ?
+If the answer is "YES!!!", then you have just found the perfect place to start :-)
 
-This plugin system created based on:
+Here is the key components of the plugin skeleton:
 1. [Typescript](https://www.typescriptlang.org/) as a typed superset of JavaScript that compiles to plain JavaScript.
-2. [FuseBox](https://github.com/fuse-box/fuse-box) as a bundler/module loader for the **sample**
+2. [FuseBox](https://github.com/fuse-box/fuse-box) as a bundler/module loader for the **sample** (incl [fuse-box-aurelia-loader](https://github.com/fuse-box/fuse-box-aurelia-loader))
 3. [Jest](https://facebook.github.io/jest/) as delightful JavaScript testing.
 4. [Puppeteer](Puppeteer) as headless Chrome for E2E testing.
-5. [FuseBox Typechecker](https://github.com/fuse-box/fuse-box-typechecker) as a simple helper to do typechecking.
+5. [FuseBox Typechecker](https://github.com/fuse-box/fuse-box-typechecker) as a simple helper to do typechecking & linting while developing and producting the final build.
 
 ### How to build and run sample
-* ```npm run watch```
+* ```npm run watch``` 
+  * Launches sample and watches src folder
+  * it typcheckes and tslints on every save
 * ```npm run build``` 
+  * Produces amd/commonjs/system/es2015 builds
+  * This will *not* emit/update files if you have any typescript or tslint errors
 
 ### How to rename to your own plugin
 * ```npm run setup```
-  * should anwser the questions about name and version
-  * then run one of the above-mentioned scripts :smile:
+  * Answer the question about name and version.
+  * Then run `npm run watch` 
+  * Now open `http://localhost:4444` to see plugin in action.
   
-### How to test our functionalities
+### How to run unitTest
 
 * ```npm run unitTest```
   * for unit testing with Jest.
@@ -30,7 +36,19 @@ This plugin system created based on:
 * ```npm run unitTestCoverage```
   * for unit testing with Jest with test coverage info.
   
-### How to test as user perspective (E2E)
+### How to run E2E-test
 
 * ```npm run e2eTest```
-  * You should be sure your app is up and running on `http://localhost:4444` then use the command.
+  * Make sure you are running the sample, `npm watch` before you run the test
+
+### Before you start code you also need to:
+*  delete .git folder and run `git init`
+* update package.json with 
+  * description
+  * keywords
+  * homepage
+  * bugs
+  * license
+  * author
+  * repository
+  * etc etc
