@@ -28,10 +28,10 @@
     "watch": "node ./scripts/watch.js",
     "eslint": "node ./node_modules/eslint/bin/eslint scripts",
     "eslintFix": "node ./node_modules/eslint/bin/eslint scripts --fix",
-    "unit-test": "./node_modules/.bin/jest --config=jest.unit.config.json",
-    "unit-test-coverage": "./node_modules/.bin/jest --coverage --config=jest.unit.config.json",
-    "unit-test-watch": "./node_modules/.bin/jest --config=jest.unit.config.json --watch",
-    "e2e-test": "./node_modules/.bin/jest --config=jest.e2e.config.json"
+    "unitTest": "./node_modules/.bin/jest --config=jest.unit.config.json",
+    "unitTestCoverage": "./node_modules/.bin/jest --coverage --config=jest.unit.config.json",
+    "unitTestWatch": "./node_modules/.bin/jest --config=jest.unit.config.json --watch",
+    "e2eTest": "./node_modules/.bin/jest --config=jest.e2e.config.json"
   },
   "devDependencies": {
     "@types/jest": "^23.0.0",
