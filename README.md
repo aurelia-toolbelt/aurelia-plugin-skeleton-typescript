@@ -34,3 +34,8 @@ This plugin system created based on:
 
 * ```npm run e2eTest```
   * You should be sure your app is up and running on `http://localhost:4444` then use the command.
+
+
+### update scripts
+* use own terminal and run `npm run script-watch`
+  * this will now watch scripts folder and emit new code if error free

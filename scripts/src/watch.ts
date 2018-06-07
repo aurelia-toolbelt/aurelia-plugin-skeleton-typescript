@@ -1,25 +1,19 @@
-// @ts-check
 /**
  * This takes care of the watch script, uses fusebox as loader/bundler
- * 
+ *
  */
-const {
+import {
   FuseBox,
   QuantumPlugin,
   WebIndexPlugin,
   Sparky,
   HTMLPlugin,
   CSSPlugin
-} = require('fuse-box');
-// @ts-ignore
-const packageName = require('../package.json').name;
-const {
-  runTypeChecker
-} = require('./typechecker');
-const {
-  bootstrapLoader
-} = require('./bootstrapLoader');
-let fuse, target = 'browser@es6';
+} from 'fuse-box';
+import { runTypeChecker } from './typechecker';
+import { bootstrapLoader } from './bootstrapLoader';
+const packageName = require('../../package.json').name;
+let fuse: any, target = 'browser@es6';
 
 console.log('\x1b[36m', packageName);
 
@@ -51,10 +45,22 @@ let webIndexTemplate =
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Welcome to Aurelia with FuseBox</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>   
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script
+          src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+          integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+          crossorigin="anonymous"></script>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+          integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+          crossorigin="anonymous"></script>
+        <script
+          src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+          integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+          crossorigin="anonymous"></script>
     </head>
     <body aurelia-app="sample/main"></body>
     <script type="text/javascript" charset="utf-8" src="./app.js"></script>
@@ -63,12 +69,12 @@ let webIndexTemplate =
 
 Sparky.task('config', () => {
   fuse = FuseBox.init({
-    homeDir: '../src',
+    homeDir: '../../src',
     globals: {
       'default': '*'
     },
     target: target,
-    output: '../dev/$name.js',
+    output: '../../dev/$name.js',
     cache: false,
     log: false,
     alias: {
@@ -89,14 +95,14 @@ Sparky.task('config', () => {
     .instructions(instructions)
     .sourceMaps(true)
     .watch()
-    .completed(proc => {
+    .completed(() => {
       runTypeChecker();
     });
 });
 
 
 Sparky.task('clean', () => {
-  return Sparky.src('../dev/').clean('../dev/');
+  return Sparky.src('../../dev/').clean('../../dev/');
 });
 
 

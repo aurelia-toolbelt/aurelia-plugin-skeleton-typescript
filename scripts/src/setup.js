@@ -1,20 +1,20 @@
-// @ts-check
 /**
  * Helper to setup the plugin for new users
  *
  */
-// @ts-ignore
-const OLD_PLUGIN_NAME = require('../package.json').name;
-// @ts-ignore
-const OLD_PLUGIN_VERSION = require('../package.json').version;
+const OLD_PLUGIN_NAME = require('../../package.json').name;
+const OLD_PLUGIN_VERSION = require('../../package.json').version;
 const PLUGIN_PACKAGE_PATH = './package.json';
 const PLUGIN_PACKAGELOCK_PATH = './package-lock.json';
+
 // Defaults
 const NEW_PLUGIN_DEFAULT_NAME = 'aurelia-plugin';
 const NEW_PLUGIN_DEFAULT_VERSION = '1.0.0-beta.1';
+
 // Console params
 var NEW_PLUGIN_NAME = process.argv[2];
 var NEW_PLUGIN_VERSION = process.argv[3] || OLD_PLUGIN_VERSION || NEW_PLUGIN_DEFAULT_VERSION;
+
 // Interactive console
 const readlineSync = require('readline-sync');
 

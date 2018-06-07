@@ -1,16 +1,15 @@
-// @ts-check
 /**
  * Build scripts, makes the es2015,commonjs/amd etc in dist folder
  * also copies html and css files over and updates the distTS folder
- * 
+ *
  */
 const { task, src } = require('fuse-box/sparky');
 const { transpileTo } = require('./transpile');
-const packageName = require('../package.json').name;
+const { packageName } = require('../../package.json').name;
 
 
 // It will not emit code if any errors by default
-var typeAndLintErrors = transpileTo('dist/commonjs/', 'commonjs');
+let typeAndLintErrors = transpileTo('dist/commonjs/', 'commonjs');
 
 
 if (!typeAndLintErrors) {
@@ -29,9 +28,9 @@ if (!typeAndLintErrors) {
   // ------------------------------------------
   // Ts code
   // ------------------------------------------
-  src('**/*.*', { base: `../src/${packageName}` })
-    .clean('../distTS/')
-    .dest('../distTS/')
+  src('**/*.*', { base: `../../src/${packageName}` })
+    .clean('../../distTS/')
+    .dest('../../distTS/')
     .exec();
 
 
@@ -39,12 +38,12 @@ if (!typeAndLintErrors) {
   // ------------------------------------------
   // Css
   // ------------------------------------------
-  src('../dist/**/*.*').clean('*.css');
-  src('**/*.css', { base: `../src/${packageName}` })
-    .dest('../dist/commonjs/')
-    .dest('../dist/amd/')
-    .dest('../dist/system/')
-    .dest('../dist/es2015/')
+  src('../../dist/**/*.*').clean('*.css');
+  src('**/*.css', { base: `../../src/${packageName}` })
+    .dest('../../dist/commonjs/')
+    .dest('../../dist/amd/')
+    .dest('../../dist/system/')
+    .dest('../../dist/es2015/')
     .exec();
 
 
@@ -52,12 +51,12 @@ if (!typeAndLintErrors) {
   // ------------------------------------------
   // Html
   // ------------------------------------------
-  src('../dist/**/*.*').clean('*.html');
-  src('**/*.html', { base: `../src/${packageName}` })
-    .dest('../dist/commonjs/')
-    .dest('../dist/amd/')
-    .dest('../dist/system/')
-    .dest('../dist/es2015/')
+  src('../../dist/**/*.*').clean('*.html');
+  src('**/*.html', { base: `../../src/${packageName}` })
+    .dest('../../dist/commonjs/')
+    .dest('../../dist/amd/')
+    .dest('../../dist/system/')
+    .dest('../../dist/es2015/')
     .exec();
 
 

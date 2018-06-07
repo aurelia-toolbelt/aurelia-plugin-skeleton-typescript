@@ -1,14 +1,13 @@
-// @ts-check
+
 /**
  * Helper to transpile the code using the fusebox-typechecker
- * 
+ *
  */
 const transpiler = require('fuse-box-typechecker').TypeHelper;
-// @ts-ignore
-const packageName = require('../package.json').name;
+const packageName = require('../../package.json').name;
 
-module.exports.transpileTo = function (outDir, moduleType) {
-  var transpile = transpiler({
+export const transpileTo = function (outDir: string, moduleType: string) {
+  const transpile = transpiler({
     tsConfig: './tsconfig.json',
     basePath: './',
     tsLint: './tslint.json',
@@ -24,7 +23,7 @@ module.exports.transpileTo = function (outDir, moduleType) {
         module: moduleType
       },
       paths : {},
-      exclude : ['node_modules', 'dist', 'src/sample', 'dev', 'distTS']
+      exclude : ['node_modules', 'dist', 'src/sample', 'dev', 'distTS', 'scripts', 'test']
     }
   });
 

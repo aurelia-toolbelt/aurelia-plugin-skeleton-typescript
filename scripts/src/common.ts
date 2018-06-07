@@ -1,13 +1,12 @@
-// @ts-check
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 /**
  * Writes to file and returns promise
  *
  */
-const renameFolder = (oldPath, newPath) => {
+export const renameFolder = (oldPath: string, newPath: string) => {
     return new Promise((resolve, reject) => {
-        fs.rename(path.resolve(oldPath), path.resolve(newPath), function (err) {
+        fs.rename(path.resolve(oldPath), path.resolve(newPath), function (err: any) {
             if (err) {
                 reject(err);
             } else {
@@ -17,9 +16,9 @@ const renameFolder = (oldPath, newPath) => {
     });
 };
 
-const readFile = (file) => {
+export const readFile = (file: string) => {
     return new Promise((resolve, reject) => {
-        fs.readFile(path.resolve(file), 'UTF8', (err, data) => {
+        fs.readFile(path.resolve(file), 'UTF8', (err: any, data: any) => {
             if (err) {
                 reject(err);
             } else {
@@ -29,9 +28,9 @@ const readFile = (file) => {
     });
 };
 
-const writeFile = (file, data) => {
+export const writeFile = (file: string, data: string) => {
     return new Promise((resolve, reject) => {
-        fs.writeFile(path.resolve(file), data, function (err) {
+        fs.writeFile(path.resolve(file), data, function (err: any) {
             if (err) {
                 reject(err);
             } else {
@@ -41,8 +40,7 @@ const writeFile = (file, data) => {
     });
 };
 
-// @ts-check
-const print = (color, comment, error) => {
+export const print = (color: string | undefined | null, comment: string, error?: boolean) => {
     switch (color) {
         case 'green':
             color = '\x1b[32m';
@@ -71,18 +69,12 @@ const print = (color, comment, error) => {
     }
 };
 
-const consoleLog = function (color, comment) {
+export const consoleLog = function (color: string | undefined | null, comment: string) {
     print(color, comment, false);
 };
 
-const consoleError = function (comment) {
+export const consoleError = function (comment: string) {
     print('red', comment, true);
 };
 
-module.exports = {
-    renameFolder,
-    readFile,
-    writeFile,
-    consoleLog,
-    consoleError
-}
+
