@@ -5,47 +5,48 @@
 
 [![Join the chat at https://gitter.im/aurelia-plugin-skeleton-typescript/Lobby](https://badges.gitter.im/aurelia-plugin-skeleton-typescript/Lobby.svg)](https://gitter.im/aurelia-plugin-skeleton-typescript/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Need to make a Aurelia Typescript plugin ?
-If the answer is "YES!!!", then you have just found the perfect place to start :-)
+You need to make an Aurelia Typescript plugin?
+If "YES!!!", you have just found the perfect place to start :smile:
 
 Here is the key components of the plugin skeleton:
-1. [Typescript](https://www.typescriptlang.org/) as a typed superset of JavaScript that compiles to plain JavaScript.
-2. [FuseBox](https://github.com/fuse-box/fuse-box) as a bundler/module loader for the **sample** (incl [fuse-box-aurelia-loader](https://github.com/fuse-box/fuse-box-aurelia-loader))
-3. [Jest](https://facebook.github.io/jest/) as delightful JavaScript testing.
+
+1. [Typescript](https://www.typescriptlang.org/) as a typed super set of JavaScript that compiles to plain JavaScript.
+2. [FuseBox](https://github.com/fuse-box/fuse-box) as a bundler/module loader for the _**sample**_ (incl [fuse-box-aurelia-loader](https://github.com/fuse-box/fuse-box-aurelia-loader))
+3. [Jest](https://facebook.github.io/jest/) a delightful JavaScript test framework.
 4. [Puppeteer](Puppeteer) as headless Chrome for E2E testing.
-5. [FuseBox Typechecker](https://github.com/fuse-box/fuse-box-typechecker) as a simple helper to do typechecking & linting while developing and producting the final build.
+5. [FuseBox Type Checker](https://github.com/fuse-box/fuse-box-typechecker) as a simple helper to do type-checking & linting while developing and producing the final build.
 
 ### How to build and run sample
-* ```npm run watch``` 
+  * ```npm run watch```
   * Launches sample and watches src folder
-  * it typcheckes and tslints on every save
-* ```npm run build``` 
+  * it does the type-checking and ts-lints on every save
+  * Now open `http://localhost:4444` to see your plugin in action.
+
+  * ```npm run build```
   * Produces amd/commonjs/system/es2015 builds
-  * This will *not* emit/update files if you have any typescript or tslint errors
+  * This will *NOT* emit/update files if you have any typescript or tslint errors
 
 ### How to rename to your own plugin
-* ```npm run setup```
+  * run:  ```npm run setup```
   * Answer the question about name and version.
-  * Then run `npm run watch` 
-  * Now open `http://localhost:4444` to see plugin in action.
-  
-### How to run unitTest
 
-* ```npm run unitTest```
-  * for unit testing with Jest.
-* ```npm run unitTestWatch```
-  * for unit testing with Jest in watch mode.
-* ```npm run unitTestCoverage```
-  * for unit testing with Jest with test coverage info.
-  
-### How to run E2E-test
+### How to run unit tests
 
-* ```npm run e2eTest```
-  * Make sure you are running the sample, `npm watch` before you run the test
+  * To run the unit test with _*Jest*_ run : _```npm run test:unit```_
+    * Watch mode: _```npm run test:unit -- --watch```_
+    * See the coverage: _```npm run test:unit -- coverage```_
 
-### Before you start code you also need to:
-*  delete .git folder and run `git init`
-* update package.json with 
+### How to run E2E tests
+
+  * Simply run: _```npm run test:e2e```_
+
+
+  * Bear in mind that you've run the sample prior to the e2e test by running the _`npm watch`_ command.
+
+### Before you start coding(or publishing an npm package) you also need to check the followings:
+
+  *  delete .git folder and run `git init`
+  * update package.json with
   * description
   * keywords
   * homepage
