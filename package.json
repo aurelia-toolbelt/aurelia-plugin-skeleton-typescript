@@ -27,10 +27,8 @@
     "setup": "node ./scripts/dist/setup.js",
     "watch": "node ./scripts/dist/watch.js",
     "script-watch": "node ./scripts/script-watch.js",
-    "unitTest": "./node_modules/.bin/jest --config=jest.unit.config.json",
-    "unitTestCoverage": "./node_modules/.bin/jest --coverage --config=jest.unit.config.json",
-    "unitTestWatch": "./node_modules/.bin/jest --config=jest.unit.config.json --watch",
-    "e2eTest": "./node_modules/.bin/jest --config=jest.e2e.config.json"
+    "test:unit": "node ./node_modules/.bin/jest --config=jest.unit.config.json",
+    "test:e2e": "node ./node_modules/.bin/jest --config=jest.e2e.config.json"
   },
   "devDependencies": {
     "@types/jest": "^23.0.0",
