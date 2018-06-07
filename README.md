@@ -55,3 +55,9 @@ Here is the key components of the plugin skeleton:
   * author
   * repository
   * etc etc
+
+
+### How update scripts/transpile
+
+* Run `npm run script watch`
+  * this will not emit new script js code if no errors (type/tslint)
