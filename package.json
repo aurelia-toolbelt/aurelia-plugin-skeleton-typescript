@@ -28,8 +28,8 @@
     "watch": "node ./scripts/watch.js",
     "eslint": "node ./node_modules/eslint/bin/eslint scripts",
     "eslint:fix": "node ./node_modules/eslint/bin/eslint scripts --fix",
-    "test:unit": "node ./node_modules/.bin/jest --config=jest.unit.config.json",
-    "test:e2e": "node ./node_modules/.bin/jest --config=jest.e2e.config.json"
+    "test:unit": "./node_modules/.bin/jest --config=jest.unit.config.json",
+    "test:e2e": "./node_modules/.bin/jest --config=jest.e2e.config.json"
   },
   "devDependencies": {
     "@types/jest": "^23.0.0",
