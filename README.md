@@ -34,7 +34,7 @@ Here is the key components of the plugin skeleton:
 
   * To run the unit test with _*Jest*_ run : _```npm run test:unit```_
     * Watch mode: _```npm run test:unit -- --watch```_
-    * See the coverage: _```npm run test:unit -- coverage```_
+    * See the coverage: _```npm run test:unit -- --coverage```_
 
 ### How to run E2E tests
 
