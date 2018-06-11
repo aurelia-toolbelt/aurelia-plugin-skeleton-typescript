@@ -1,6 +1,5 @@
 {
   "verbose": true,
-  "preset": "jest-puppeteer",
   "transform": {
     "^.+\\.tsx?$": "./node_modules/ts-jest/preprocessor.js"
   },
