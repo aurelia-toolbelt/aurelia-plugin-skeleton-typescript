@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Helper to typecheck and tslint our code
+ * Helper to type-check and tslint our code
  * 
  */
 const typeAndLinter = require('fuse-box-typechecker').TypeHelper({

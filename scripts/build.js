@@ -6,7 +6,9 @@
  */
 const { task, src } = require('fuse-box/sparky');
 const { transpileTo } = require('./transpile');
-const packageName = require('../package.json').name;
+
+// @ts-ignore
+const FOLDER_NAME = require('../package.json').folder_name;
 
 
 // It will not emit code if any errors by default
@@ -29,7 +31,7 @@ if (!typeAndLintErrors) {
   // ------------------------------------------
   // Ts code
   // ------------------------------------------
-  src('**/*.*', { base: `../src/${packageName}` })
+  src('**/*.*', { base: `../src/${FOLDER_NAME}` })
     .clean('../distTS/')
     .dest('../distTS/')
     .exec();
@@ -40,7 +42,7 @@ if (!typeAndLintErrors) {
   // Css
   // ------------------------------------------
   src('../dist/**/*.*').clean('*.css');
-  src('**/*.css', { base: `../src/${packageName}` })
+  src('**/*.css', { base: `../src/${FOLDER_NAME}` })
     .dest('../dist/commonjs/')
     .dest('../dist/amd/')
     .dest('../dist/system/')
@@ -53,7 +55,7 @@ if (!typeAndLintErrors) {
   // Html
   // ------------------------------------------
   src('../dist/**/*.*').clean('*.html');
-  src('**/*.html', { base: `../src/${packageName}` })
+  src('**/*.html', { base: `../src/${FOLDER_NAME}` })
     .dest('../dist/commonjs/')
     .dest('../dist/amd/')
     .dest('../dist/system/')

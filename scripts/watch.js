@@ -1,7 +1,7 @@
 // @ts-check
 /**
  * This takes care of the watch script, uses fusebox as loader/bundler
- * 
+ *
  */
 const {
   FuseBox,
@@ -12,7 +12,7 @@ const {
   CSSPlugin
 } = require('fuse-box');
 // @ts-ignore
-const packageName = require('../package.json').name;
+const FOLDER_NAME = require('../package.json').folder_name;
 const {
   runTypeChecker
 } = require('./typechecker');
@@ -21,7 +21,7 @@ const {
 } = require('./bootstrapLoader');
 let fuse, target = 'browser@es6';
 
-console.log('\x1b[36m', packageName);
+console.log('\x1b[36m', FOLDER_NAME);
 
 let instructions = `
     > sample/main.ts
@@ -72,7 +72,7 @@ Sparky.task('config', () => {
     cache: false,
     log: false,
     alias: {
-      [packageName]: `~/${packageName}`
+      [FOLDER_NAME]: `~/${FOLDER_NAME}`
     },
     // Need to be the same..(alias cant be anything since its really on transpile fusebox does this)
     plugins: [

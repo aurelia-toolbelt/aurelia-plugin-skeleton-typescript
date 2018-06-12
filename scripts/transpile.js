@@ -1,11 +1,11 @@
 // @ts-check
 /**
  * Helper to transpile the code using the fusebox-typechecker
- * 
+ *
  */
 const transpiler = require('fuse-box-typechecker').TypeHelper;
 // @ts-ignore
-const packageName = require('../package.json').name;
+const FOLDER_NAME = require('../package.json').folder_name;
 
 module.exports.transpileTo = function (outDir, moduleType) {
   var transpile = transpiler({
@@ -19,11 +19,11 @@ module.exports.transpileTo = function (outDir, moduleType) {
     clearOnEmit: true,
     tsConfigOverride: {
       compilerOptions: {
-        rootDir: `src/${packageName}`,
+        rootDir: `src/${FOLDER_NAME}`,
         outDir: outDir,
         module: moduleType
       },
-      paths : {}
+      paths: {}
     }
   });
 
@@ -31,4 +31,3 @@ module.exports.transpileTo = function (outDir, moduleType) {
 
   return transpile.runSync();
 };
-

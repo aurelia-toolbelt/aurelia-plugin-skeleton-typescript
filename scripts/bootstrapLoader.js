@@ -1,7 +1,7 @@
 // @ts-check
 /**
  * Plugin for fusebox t inject code so we dont need it in our sample
- * 
+ *
  */
 module.exports.bootstrapLoader = function () {
   var loader = function () { };
