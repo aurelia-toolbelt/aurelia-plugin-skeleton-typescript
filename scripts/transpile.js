@@ -23,8 +23,7 @@ module.exports.transpileTo = function (outDir, moduleType) {
         outDir: outDir,
         module: moduleType
       },
-      paths : {},
-      exclude : ['node_modules', 'dist', 'src/sample', 'dev', 'distTS']
+      paths : {}
     }
   });
 
