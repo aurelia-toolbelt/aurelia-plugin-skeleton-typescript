@@ -7,5 +7,5 @@ export async function configure(aurelia: Aurelia) {
     .plugin('aurelia-plugin-skeleton-typescript');
 
   await aurelia.start();
-  await aurelia.setRoot('sample/app');
+  await aurelia.setRoot('app');
 }

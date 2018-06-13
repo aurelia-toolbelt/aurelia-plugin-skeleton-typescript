@@ -7,6 +7,8 @@
 const OLD_FOLDER_NAME = require('../package.json').folder_name;
 // @ts-ignore
 const OLD_PLUGIN_VERSION = require('../package.json').version;
+// @ts-ignore
+const OLD_PLUGIN_NAME = require('../package.json').name;
 const PLUGIN_PACKAGE_PATH = './package.json';
 const PLUGIN_PACKAGELOCK_PATH = './package-lock.json';
 // Defaults
@@ -124,7 +126,7 @@ const setup = async function () {
      */
     consoleLog('white', 'Updating main.ts file ...');
     let aurelia_main = await readFile('./src/sample/main.ts');
-    aurelia_main = aurelia_main.replace(`.plugin('${OLD_FOLDER_NAME}')`, `.plugin('${NEW_FOLDER_NAME}')`);
+    aurelia_main = aurelia_main.replace(`.plugin('${OLD_PLUGIN_NAME}')`, `.plugin('${NEW_PLUGIN_NAME}')`);
     await writeFile('./src/sample/main.ts', aurelia_main);
     consoleLog('green' , aurelia_main);
     consoleLog('white', 'The main.ts file updated.');

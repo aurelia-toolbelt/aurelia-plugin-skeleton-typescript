@@ -13,21 +13,24 @@ const {
 } = require('fuse-box');
 // @ts-ignore
 const FOLDER_NAME = require('../package.json').folder_name;
+// @ts-ignore
+const PACKAGE_NAME = require('../package.json').name;
 const {
   runTypeChecker
 } = require('./typechecker');
 const {
   bootstrapLoader
 } = require('./bootstrapLoader');
-let fuse, target = 'browser@es6';
+let fuse_sample, fuse_plugin, target = 'browser@es6';
 
-console.log('\x1b[36m', FOLDER_NAME);
 
+// add your vendor packages in here
 let instructions = `
-    > sample/main.ts
+    > main.ts
     + **/*.{ts,html,css}
     + fuse-box-css
     + aurelia-bootstrapper
+    + aurelia-binding
     + aurelia-framework
     + aurelia-pal
     + aurelia-metadata
@@ -42,7 +45,8 @@ let instructions = `
     + aurelia-event-aggregator
     + aurelia-history-browser
     + aurelia-templating-router
-    + fuse-box-aurelia-loader`;
+    + fuse-box-aurelia-loader
+    `;
 
 let webIndexTemplate =
   `<!DOCTYPE html>
@@ -54,16 +58,19 @@ let webIndexTemplate =
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>   
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     </head>
-    <body aurelia-app="sample/main"></body>
+    <body aurelia-app="main"></body>
+    <!-- <script type="text/javascript" charset="utf-8" src="./vendor.js"></script> -->
     <script type="text/javascript" charset="utf-8" src="./app.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./${FOLDER_NAME}.js"></script>
     </html>`;
 
 
 Sparky.task('config', () => {
-  fuse = FuseBox.init({
-    homeDir: '../src',
+
+  fuse_sample = FuseBox.init({
+    homeDir: '../src/sample',
     globals: {
       'default': '*'
     },
@@ -85,13 +92,48 @@ Sparky.task('config', () => {
     ]
   });
 
-  fuse.bundle('app')
+  fuse_sample.bundle('app')
     .instructions(instructions)
     .sourceMaps(true)
     .watch()
     .completed(proc => {
       runTypeChecker();
     });
+
+  fuse_plugin = FuseBox.init({
+    homeDir: `../src/${FOLDER_NAME}`,
+    // globals: {
+    //   '@aut/shahab': '*'
+    // },
+    target: target,
+    output: '../dev/$name.js',
+    cache: false,
+    log: false,
+    alias: {
+      [FOLDER_NAME]: `~/${FOLDER_NAME}`
+    },
+    // Need to be the same..(alias cant be anything since its really on transpile fusebox does this)
+    plugins: [
+      bootstrapLoader(),
+      CSSPlugin(),
+      HTMLPlugin()
+    ],
+    package: {
+      name: `${PACKAGE_NAME}`,
+      main: "index.ts"  // if your package start point file is different change it here
+    }
+  });
+
+  // the name of the output file as specified $name in output part of init method 
+  fuse_plugin.bundle(`${FOLDER_NAME}`)
+    .watch().cache(false)
+    .instructions(`
+            + [**/*.html]
+            + [**/*.ts]
+            + [**/*.js]
+            + [**/*.css]
+        `).sourceMaps(true);
+
 });
 
 
@@ -101,6 +143,9 @@ Sparky.task('clean', () => {
 
 
 Sparky.task('default', ['clean', 'config'], () => {
-  fuse.dev();
-  fuse.run();
+
+  fuse_plugin.run();
+
+  fuse_sample.dev();
+  fuse_sample.run();
 });
