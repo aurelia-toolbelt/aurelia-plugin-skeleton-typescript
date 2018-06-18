@@ -67,7 +67,9 @@
         "stylus": "^0.54.5",
         "ts-jest": "^22.4.6",
         "tslint": "^5.10.0",
-        "typescript": "2.9.1"
+        "typescript": "2.9.1",
+
+        "jquery" : "3.3.1"
     },
     "jspm": {
         "registry": "npm",
@@ -83,10 +85,10 @@
         "usedBy": [],
         "build": {
             "resources": [
-                "@aut/@aurelia-toolbelt/@aurelia-toolbelt/aurelia-plugin-skeleton-typescript",
-                "@aut/@aurelia-toolbelt/@aurelia-toolbelt/aurelia-plugin-skeleton-typescript/index",
-                "@aut/@aurelia-toolbelt/@aurelia-toolbelt/aurelia-plugin-skeleton-typescript/hello-world.css",
-                "@aut/@aurelia-toolbelt/@aurelia-toolbelt/aurelia-plugin-skeleton-typescript/hello-world.html"
+                "aurelia-plugin-skeleton-typescript",
+                "aurelia-plugin-skeleton-typescript/index",
+                "aurelia-plugin-skeleton-typescript/hello-world.css",
+                "aurelia-plugin-skeleton-typescript/hello-world.html"
             ]
         }
     }
